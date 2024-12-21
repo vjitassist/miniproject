@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJIT Assist</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            overflow: hidden;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        h1, h3, h4 {
+            margin: 0;
+        }
+
+        h1 {
+            color: #ff3333;
+        }
+
+        h4 {
+            color: #ccc;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+      /* AI-themed Animations */
+      .glow-effect {
+            color: #fff;
+            text-shadow: 0 0 10px #ff2200c8, 0 0 20px #923921, 0 0 30px #0e1dbfa9, 0 0 40px #8c81cb8e;
+        }
+
+
+/* Header Styles */
+header {
+    position: relative;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out; /* Header fade-in animation */
+    margin-top: 5px; /* Add margin for the header */
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 10px; /* Small margin */
+    background: linear-gradient(90deg, red, blue, red);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFloat 5s infinite linear; /* Floating gradient animation */
+    text-shadow: 0px 0px 15px rgb(3, 3, 121), 0px 0px 25px rgba(255, 0, 0, 0.5);
+  }
+
+  /* Fade-in effect for header */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Gradient floating animation */
+  @keyframes gradientFloat {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+
+
+
+
+        /* Login Page Styles */
+        #login-page {
+            display: block;
+            height: 100vh;
+            background-size: cover;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #login-page .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #login-page input {
+            width: 70%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            background: transparent;
+            color: white;
+            font-size: 22px;
+        }
+
+        #login-page button {
+            width: 30%;
+            padding: 10px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #login-page button:hover {
+            background-color: #cc2929;
+        }
+
+        #login-page h2 {
+            color: white;
+        }
+
+        #login-page h3 {
+            margin-top: 10px;
+            color: #ff3333;
+        }
+
+        /* Sidebar Page Styles */
+        #sidebar-page {
+            display: none;
+            height: 100vh;
+            background-color: #4644444a;
+            padding-top: 60px;
+            position: relative;
+            overflow: hidden;
+            padding-left: 250px;
+            text-align: center;
+        }
+
+        #sidebar-page .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #111;
+            padding-top: 50px;
+            padding-left: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #sidebar-page .sidebar img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #sidebar-page .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar-page .sidebar ul li {
+            padding: 15px;
+            background-color: #333;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+         
+        #sidebar-page .sidebar ul li:hover {
+            background-color: #ff3333;
+            color: white;
+        }
+
+        #sidebar-page .sidebar ul li:active {
+            background-color: #cc2929;
+        }
+
+        #sidebar-page .sidebar ul li button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #sidebar-page .sidebar ul li button:hover {
+            background-color: #ff3333;
+        }
+        
+        .main-content {
+    margin: auto;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-background video {
+    position: fixed;
+    top: 30;
+    left: 50;
+    width: 60%;
+    height: 70%;
+    object-fit: center; /* Ensures the video covers the whole screen */
+    z-index: -1; /* Places the video behind content */
+}
+
+
+
+/* Example content styling */
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: 50px; /* Adjust for positioning */
+}
+
+.content h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.main-content h3 {
+    font-size: 24px;
+    margin-bottom: 80px;
+}
+
+.explore-btn {
+    padding: 10px 20px;
+    background-color: #f00;
+    color: white;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.explore-btn:hover {
+    background-color: #c00;
+}
+
+
+        /* Chat Page Styles */
+        #chat-page {
+            display: none;
+            height: 75vh;
+            background-color: #ffffff;
+            position: relative;
+            padding-top: 60px;
+            overflow-y: auto; 
+        }
+        
+       
+
+        /* Popup Styles */
+        .popup {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1001;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup button {
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+/* Modal fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#popup.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Styling for the tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1.1em;
+    background-color: #433939bd;
+    border-radius: 10px;
+    overflow-y: auto; 
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #f30707;
+}
+
+table th {
+    background-color: #333;
+    color: rgba(131, 123, 123, 0.55);
+}
+
+table tr:nth-child(even) {
+    background-color: #65626280;
+}
+
+table tr:hover {
+    background-color: #6764646b;
+}
+
+#login-page .container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* Logout and Back Button Styles */
+        .logout-btn,
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover,
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+
+        .back-btn {
+            background-color: #007bff;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+/* Modal content styling */
+#modal-title {
+    font-size: 1.5em;
+    color: #333;
+}
+
+#modal-content {
+    margin-top: 20px;
+}
+
+        .popup button:hover {
+            background-color: #cc2929;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>VJIT Assist</h1>
+    </header>
+
+    
+
+    <!-- Login Page -->
+    <div id="login-page">
+        <div class="container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <img src="logo.png" alt="AI Icon">
+                <input type="email" id="email" placeholder="Enter your @vjit.ac.in email" required />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sidebar Page -->
+    <div id="sidebar-page">
+        <div class="sidebar">
+            <img src="vjitlogo.png" alt="VJIT Logo">
+            <ul>
+                <li onclick="openModal('timetableA')">Section A Time Table</li>
+                <li onclick="openModal('timetableB')">Section B Time Table</li>
+                <li onclick="openModal('academic')">Academic Calendar</li>
+                <li onclick="openModal('faculty')">Know Your Faculties</li>
+                <li onclick="openModal('hod')">Message from HoD</li>
+            </ul>
+        </div>
+            <div class="main-content">
+                <h3>Welcome to VJIT Assist</h3>
+                <button onclick="navigateToChatPage()" class="explore-btn">Explore the Assist Chat</button>
+            </div>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <h3>Welcome to VJIT Assist</h3>
+    </div>
+
+     <!-- Popup Modal -->
+     <div id="popup" class="popup">
+        <h4 id="modal-title"></h4>
+        <p id="modal-content"></p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- Chat Page -->
+    <div id="chat-page">
+        <button class="back-btn" onclick="goBackToSidebar()">Back</button>
+        
+
+    <div class="chat-bot">
+                
+        <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+        
+        <df-messenger
+          project-id="vjit-assist"   
+          agent-id="b439f2a7-159a-4b43-84f2-c063b8ec970e"
+          language-code="en"
+          max-query-length="-1"
+          allow-feedback="all">
+          <df-messenger-chat
+           chat-title=" Welcome! Assist Chat">
+          </df-messenger-chat>
+            
+        </df-messenger>
+    
+        
+            <style>
+              df-messenger {
+                
+                --df-messenger-font-color: #000000;   /* White font color */
+                --df-messenger-font-family: Google Sans;
+                --df-messenger-chat-background: #ffffffc7;   /* Black background */
+                --df-messenger-message-user-background: #f3917e56;   /* Red background for user message */
+                --df-messenger-message-bot-background: #efafaf62;   /* White background for bot message */
+                
+              }
+          
+              df-messenger .df-chat-wrapper {
+    max-height: 400px; /* Set the maximum height of the chat window */
+    overflow-y: auto;  /* Enable vertical scrolling for messages */
+  }
+
+  df-messenger .df-message {
+    max-height: 70px; /* Limit the message box height */
+    overflow-y: auto; /* Make the message area scrollable */
+  }
+              
+            </style>
+        
+    </div>
+
+
+   
+
+    <script>
+        // JavaScript code
+        window.onload = function () {
+            const loginPage = document.getElementById('login-page');
+            const sidebarPage = document.getElementById('sidebar-page');
+            const chatPage = document.getElementById('chat-page');
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+
+                if (email.endsWith('@vjit.ac.in')) {
+                    loginPage.style.display = 'none';
+                    sidebarPage.style.display = 'block';
+                } else {
+                    alert('Please enter a valid @vjit.ac.in email.');
+                }
+            });
+        };
+
+        function logout() {
+            document.getElementById('sidebar-page').style.display = 'none';
+            document.getElementById('chat-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        }
+
+        function openModal(type) {
+    const popup = document.getElementById('popup');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+    // Add some animation styles to the modal for a smooth appearance
+    popup.style.transition = "opacity 0.5s ease-in-out";
+    popup.style.opacity = 1;
+
+    if (type === 'timetableA') {
+        modalTitle.textContent = 'Section A Time Table';
+        modalContent.innerHTML = `
+            <h3>Department of Artificial Intelligence (AI)</h3>
+            <p><strong>TIME TABLE - 2024-25</strong><br>
+            <strong>Year & Sem:</strong> B.Tech IV Year / I-Sem<br>
+            <strong>Branch & Section:</strong> AI - A<br>
+            <strong>Room No:</strong> S-302</p>
+            <table>
+                <tr>
+                    <th>Day/Time</th>
+                    <th>9:20-10:10</th>
+                    <th>10:10-11:00</th>
+                    <th>11:00-11:50</th>
+                    <th>11:50-12:40</th>
+                    <th>12:40-01:30</th>
+                    <th>01:30-02:20</th>
+                    <th>02:20-03:10</th>
+                    <th>03:10-04:00</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>HCI</td>
+                    <td>DL</td>
+                    <td>RP</td>
+                    <td>DL</td>
+                    <td>LUNCH</td>
+                    <td>RP LAB (C-309)</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>CV</td>
+                    <td>CV LAB (C-309)</td>
+                    <td></td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>DL</td>
+                    <td>HCI</td>
+                    <td>Library</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>CV</td>
+                    <td>HCI</td>
+                    <td>DL</td>
+                    <td>HCI</td>
+                    <td>LUNCH</td>
+                    <td>MINI PROJECT</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>RP</td>
+                    <td>CV</td>
+                    <td>OE</td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>CV</td>
+                    <td>HCI</td>
+                    <td>CH</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>DL</td>
+                    <td>HCI</td>
+                    <td>OE</td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>RP</td>
+                    <td>CV</td>
+                    <td>RP</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>RP</td>
+                    <td>DL</td>
+                    <td>RP</td>
+                    <td>CV</td>
+                    <td>LUNCH</td>
+                    <td>TECH CLUBS</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        `;
+    } else if (type === 'timetableB') {
+        modalTitle.textContent = 'Section B Time Table';
+        modalContent.innerHTML = `
+            <h3>Department of Artificial Intelligence (AI)</h3>
+            <p><strong>TIME TABLE - 2024-25</strong><br>
+            <strong>Year & Sem:</strong> B.Tech IV Year / I-Sem<br>
+            <strong>Branch & Section:</strong> AI - B<br>
+            <strong>Room No:</strong> S-304</p>
+            <table>
+                <tr>
+                    <th>Day/Time</th>
+                    <th>9:20-10:10</th>
+                    <th>10:10-11:00</th>
+                    <th>11:00-11:50</th>
+                    <th>11:50-12:40</th>
+                    <th>12:40-01:30</th>
+                    <th>01:30-02:20</th>
+                    <th>02:20-03:10</th>
+                    <th>03:10-04:00</th>
+                </tr>
+                <tr>
+                    <td>Monday</td>
+                    <td>RP</td>
+                    <td colspan="2">CV LAB (C-309)</td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>HCI</td>
+                    <td>CV</td>
+                    <td>DL</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>DL</td>
+                    <td>HCI</td>
+                    <td>RP</td>
+                    <td>RP</td>
+                    <td>LUNCH</td>
+                    <td>CH</td>
+                    <td>DL</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>DL</td>
+                    <td colspan="2">RP LAB (C-309)</td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>CV</td>
+                    <td>RP</td>
+                    <td>CV</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>HCI</td>
+                    <td>DL</td>
+                    <td colspan="2">OE</td>
+                    <td>LUNCH</td>
+                    <td>DL</td>
+                    <td>RP</td>
+                    <td>CV</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>CV</td>
+                    <td>RP</td>
+                    <td colspan="2">OE</td>
+                    <td>LUNCH</td>
+                    <td colspan="2">TECH CLUBS</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td>HCI</td>
+                    <td colspan="2">MINI PROJECT</td>
+                    <td></td>
+                    <td>LUNCH</td>
+                    <td>CV</td>
+                    <td>HCI</td>
+                    <td>Library</td>
+                </tr>
+            </table>
+        `;
+    } else if (type === 'academic') {
+        modalTitle.textContent = 'Academic Calendar';
+        modalContent.innerHTML = `
+            <h3>Academic Calendar</h3>
+            <h4>B.TECH - (4th Year)</h4>
+            <p><strong>Classroom - I Spell of Instruction:</strong></p>
+            <h4>First Semester</h4>
+            <table>
+                <thead>
+                    <tr><th>Event</th><th>Date</th><th>Duration</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Commencement of Class Work</td><td>18.07.2024</td><td></td></tr>
+                    <tr><td>Mid Examinations</td><td>17.09.2024 - 21.09.2024</td><td>1 Week</td></tr>
+                    <tr><td>II Spell of Instructions</td><td>23.09.2024</td><td>9 Weeks</td></tr>
+                    <tr><td>II Mid Examinations</td><td>25.11.2024 - 30.11.2024</td><td>1 Week</td></tr>
+                    <tr><td>End Semester Examinations</td><td>09.12.2024 - 28.12.2024</td><td>3 Weeks</td></tr>
+                </tbody>
+            </table>
+
+            <h4>Second Semester</h4>
+            <table>
+                <thead>
+                    <tr><th>Event</th><th>Date</th><th>Duration</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Commencement of Class Work</td><td>30.12.2024</td><td></td></tr>
+                    <tr><td>I Spell of Instructions</td><td>30.12.2024 - 21.02.2025</td><td>8 Weeks</td></tr>
+                    <tr><td>I Mid Examinations</td><td>12.02.2025 - 14.02.2025</td><td>1 Week</td></tr>
+                    <tr><td>II Spell of Instructions</td><td>22.02.2025 - 28.02.2025</td><td>1 Week</td></tr>
+                    <tr><td>II Mid Examinations</td><td>28.04.2025 - 02.05.2025</td><td>1 Week</td></tr>
+                </tbody>
+            </table>
+        `;
+    } else if (type === 'faculty') {
+    modalTitle.textContent = 'Know Your Faculty';
+    modalContent.innerHTML = `
+        <h3>Faculty Details</h3>
+        <table>
+            <tr><th>Subject</th><th>Code</th><th>Faculty Name</th><th>Contact Number</th></tr>
+            <tr><td>Computer Vision (CV)</td><td>A57569</td><td>Dr. Anusha Ampavathi</td><td>8179030073</td></tr>
+            <tr><td>Deep Learning (DL)</td><td>A57570</td><td>Mrs. Parul Gupta</td><td>8779697365</td></tr>
+            <tr><td>R Programming (RP)</td><td>A57561</td><td>Mrs. Ch. Swetha</td><td>9550381682</td></tr>
+            <tr><td>Human Computer Interaction (HCI)</td><td>A57572</td><td>Mrs. Shaik Gousiya Begum</td><td>7675060616</td></tr>
+            <tr><td>Computer Vision Lab (C-309)</td><td>A575A7</td><td>Dr. A. Anusha & Mrs. K. Nirosha </td><td>8179030073 / 7075845571</td></tr>
+            <tr><td>R Programming Lab (C-309)</td><td>A575A4</td><td>Mrs. Ch. Swetha & Ms. Amreen</td><td>9550381682 / 9059445676</td></tr>
+            <tr><td>Industry Oriented Mini Project (C-309)</td><td>A575P1</td><td>Mr. M. Ravi</td><td>8978418316</td></tr>
+            <tr><td>Technical Clubs</td><td>TC</td><td>Dr. A. Obulesh</td><td>9676128116</td></tr>
+            <tr><td>Counselling Hour & Library</td><td>CH</td><td>Mrs. Ch. Swetha</td><td>9550381682</td></tr>
+        </table>
+    `;
+} else if (type === 'hod') {
+    modalTitle.textContent = 'Message from HoD';
+    modalContent.innerHTML = `
+        <h3>Message from the Head of Department</h3>
+        <p>Dr. A. Obulesh, Assoc. Prof. in the Dept. of Artificial Intelligence at Vidya Jyothi Institute of Technology, has over 14 years of experience in academics. He holds a Ph.D. in Computer Science & Engineering from Jawaharlal Nehru Technological University, Kakinada (JNTUK), India. His M.Tech. was completed at Rajeev Gandhi Memorial College of Engineering and Technology, Nandyal.</p>
+        <p>Dr. Obulesh has published 32 research papers in National, International Scopus/SCI journals and conferences. He worked as Convener for AI and ML Research Wing, and established the MALAI (Machine Learning and Artificial Intelligence) Club at Anurag University, Hyderabad.</p>
+        <p>His research interests are Artificial Intelligence, Machine Learning, Image Processing, and Computer Vision. He has also contributed significantly to NBA, NAAC accreditation, and FDP/STTP events, as well as co-convened the IEEE-AHCSSC-2020 event.</p>
+        <p><strong>Dr. A. Obulesh</strong><br>Head of Department, Artificial Intelligence</p>
+    `;
+}
+
+
+    popup.style.display = 'block';
+    animateModal();  // Call the animation function to trigger modal appearance
+}
+
+function closeModal() {
+    document.getElementById('popup').style.display = 'none';
+}
+
+function animateModal() {
+    const popup = document.getElementById('popup');
+    popup.classList.add('fade-in');  // This class should be defined in your CSS for the fade-in effect
+}
+
+        function navigateToChatPage() {
+            document.getElementById('sidebar-page').style.display = 'none';
+            document.getElementById('chat-page').style.display = 'block';
+        }
+
+        function goBackToSidebar() {
+            document.getElementById('chat-page').style.display = 'none';
+            document.getElementById('sidebar-page').style.display = 'block';
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const chatContent = document.getElementById('chat-content');
+            const message = chatInput.value;
+            if (message) {
+                chatContent.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+                chatInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
